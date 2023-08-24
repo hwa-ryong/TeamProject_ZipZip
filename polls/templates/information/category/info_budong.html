@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/information/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="contract1"></div>
+    <div id="contract2_1"></div>
+    <div id="contract2_2"></div>
+    <div id="contract2_3"></div>
+    <div id="contract3_1"></div>
+    <div id="contract3_2"></div>
+    <div id="contract3_3"></div>
+    <div id="contract3_4"></div>
+
+    <div class="information_box">
+        
+        <ol>
+            <li class="on">
+                <h4><span>Q1</span> 사전 물건 확인</h4>
+                <p>등기부등본, 건축물대장 열람, 실제 내부 확인</p>
+                <p>수익형부동산 투자의 경우 수익률을 미리 정확히 계산을 한다.</p>
+            </li>
+            <li>
+                <h4><span>Q2</span> 가계약 체결</h4>
+                <p>
+                    중개사무소에서 가계약 요청 및 보통 100~500만원을 부동산 소유주의 계좌로 입금
+                    중개사 계좌로 입금하면 절대 안된다. (형사고발대상)
+                </p>
+            </li>
+            <li>
+                <h4><span>Q3</span> 매매계약 : 매매 계약서 작성</h4>
+                <p><a href="#" class="on_show_img1">3-1. 매매계약 : 본 계약 체결전 준비 서류</a></p>
+                <p><a href="#">3-2. 매매계약 : 본 계약 체결 전 확인사항</a></p>
+                <p><a href="#" class="on_show_img2-1">3-2-1. 당일발급 서류, 계약서상 내용 확인</a></p>
+                <p><a href="#" class="on_show_img2-2">3-2-2. 특약사항, 임차인 있는 경우</a></p>
+                <p><a href="#" class="on_show_img2-3">3-2-3. 관리비, 공과금 정산영수증, 부동산 양도신고 확인서, 소유자 법적효력 여부 확인</a></p>
+                <p><a href="#">3-3. 매매계약 : 계약서에 포함할 특약사항 정리</a></p>
+                <p><a href="#" class="on_show_img3-1">3-3-1. 부동산 수익, 등기부등본 상태 잔급일까지 유지 조항, 관리제한사유 방지 및 계약금 내용</a></p>
+                <p><a href="#" class="on_show_img3-2">3-3-2. 임대차 승계, 매도인의 하자담보에 대한 책임사항 확인</a></p>
+                <p><a href="#" class="on_show_img3-3">3-3-3. 부착물 인수, 소유권 이전, 이중계약 방지 조항, 일방의 계약해제</a></p>
+                <p><a href="#" class="on_show_img3-4">3-3-4. 부동산 인도날짜, 제세공과금 관련, 토지거래허가구역</a></p>
+                
+            </li>
+            <li>
+                <h4><span>Q4</span> 잔금납부 및 소유권이전 : 주의사항</h4>
+                <p>
+                    마지막으로 한번 더 등기부등본을 재확인하여 계약체결 후 추가 저당권이 설정되거나 이중계약 등의 권리변동이 있는지 확인한다.<br>
+                    최종 잔금납부 전 다시 한번 집 상태를 확인하여 계약 날짜와 집 상태가 같은지 확인한다.
+                    하자가 없으면 매도인으로부터 등기이전에 필요한 서류가 빠짐없이 구비됐는지 확인하고 잔금을 지급함과 동시에 영수증을 건네받는다.
+                    취득세 영수증 보관 (양도세 낼 때 시세차익이 많이 난다면 필요)
+                </p>
+            </li>
+
+        </ol>
+    </div>
+
+    <script>
+        // 토글버전
+        $(function () {
+            $(".information_box ol li").click(function () {
+                // 클릭한 대상에게 클래스 "on"을 추가 또는 제거하여 확장 및 축소
+                $(this).toggleClass("on");
+
+            });
+
+            function handleClick(event, contractId) {
+                event.stopPropagation();
+                $('.information_box').css({'background':'rgba(0, 0, 0, 0.2)',
+                                            'color':'rgba(0, 0, 0, 0.2)'});
+                $('li').css('border-top', '4px solid rgba(0, 0, 0, 0.2)');
+                $($('#contract' + contractId)).addClass('contract' + contractId);
+            }
+
+            $('.on_show_img1').click(function (event) {
+                handleClick(event, '1');
+            });
+
+            $('.on_show_img2-1').click(function (event) {
+                handleClick(event, '2_1');
+            });
+
+            $('.on_show_img2-2').click(function (event) {
+                handleClick(event, '2_2');
+            });
+
+            $('.on_show_img2-3').click(function (event) {
+                handleClick(event, '2_3');
+            });
+
+            $('.on_show_img3-1').click(function (event) {
+                handleClick(event, '3_1');
+            });
+
+            $('.on_show_img3-2').click(function (event) {
+                handleClick(event, '3_2');
+            });
+
+            $('.on_show_img3-3').click(function (event) {
+                handleClick(event, '3_3');
+            });
+
+            $('.on_show_img3-4').click(function (event) {
+                handleClick(event, '3_4');
+            });
+
+            // 이미지 출력 후 document 문서에 제거 이벤트 바인딩
+            $(document).click(function (event) {
+                if($(event.target).hasClass('contract1') ||
+                   $(event.target).hasClass('contract2_1') ||
+                   $(event.target).hasClass('contract2_2') ||
+                   $(event.target).hasClass('contract2_3') ||
+                   $(event.target).hasClass('contract3_1') ||
+                   $(event.target).hasClass('contract3_2') ||
+                   $(event.target).hasClass('contract3_3') ||
+                   $(event.target).hasClass('contract3_4')) {
+                    $('.information_box').removeAttr('style');
+                    $('li').removeAttr('style');
+                    $('#contract1').removeClass('contract1');
+                    $('#contract2_1').removeClass('contract2_1');
+                    $('#contract2_2').removeClass('contract2_2');
+                    $('#contract2_3').removeClass('contract2_3');
+                    $('#contract3_1').removeClass('contract3_1');
+                    $('#contract3_2').removeClass('contract3_2');
+                    $('#contract3_3').removeClass('contract3_3');
+                    $('#contract3_4').removeClass('contract3_4');
+                };
+            });
+        });
+
+
+    </script>
+
+</body>
+
+</html>

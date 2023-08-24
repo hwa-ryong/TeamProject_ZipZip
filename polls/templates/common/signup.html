@@ -1,0 +1,92 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/common/style.css' %}">
+<style>
+    .business-license-field {
+        display: none;
+    }
+</style>
+<section id="signup" class="signup">
+    <form action="" method="post" enctype="multipart/form-data" id="signup_form">
+        {% csrf_token %}
+        <div class="error_data"></div>
+        <div>
+            <label class="radio"><input type="radio" name="usertype" value="개인" checked>개인</label>
+            <label class="radio"><input type="radio" name="usertype" value="사업자">사업자</label>
+        </div>
+        <div>
+            <label for="username">아이디</label>
+            <input type="text" id="username" name="username" value="{{ form.username.value|default_if_none:'' }}"
+                   required placeholder="아이디">
+        </div>
+        <div>
+            <label for="password1">비밀번호</label>
+            <input type="password" id="password1" name="password1" value="{{ form.password1.value|default_if_none:'' }}"
+                   required placeholder="8자 이상">
+        </div>
+        <div>
+            <label for="password2">비밀번호 확인</label>
+            <input type="password" id="password2" name="password2" value="{{ form.password2.value|default_if_none:'' }}"
+                   required placeholder="비밀번호 확인">
+        </div>
+        <div>
+            <label for="last_name">이름</label>
+            <input type="text" id="last_name" name="last_name" value="{{ form.last_name.value|default_if_none:'' }}"
+                   required placeholder="이름">
+        </div>
+        <div>
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" value="{{ form.email.value|default_if_none:'' }}" required placeholder="이메일">
+        </div>
+        <!-- 사업자 등록증 필드 -->
+        <div class="business-license-field">
+            <label for="business_license">사업자 등록증</label>
+            <input type="file" id="business_license" name="business_license">
+            <!-- 추출된 텍스트를 자동 입력하기 위한 숨겨진 필드 -->
+            <input type="hidden" id="business_license_text" name="business_license_text">
+        </div>
+        <!-- 추출된 텍스트를 자동으로 입력하기 위한 필드 -->
+        <div>
+            <label for="extracted_text">추출된 텍스트</label>
+            <input type="text" id="extracted_text" name="extracted_text" readonly>
+        </div>
+        <button type="submit" class="signup_but">가입하기</button>
+    </form>
+</section>
+<script>
+        const userTypeRadio = document.getElementsByName("usertype");
+        const businessLicenseField = document.querySelector(".business-license-field");
+        const businessLicenseText = document.getElementById("business_license_text");
+        const extractedTextField = document.getElementById("extracted_text");
+
+        // 초기 설정
+        if (userTypeRadio[0].checked) {
+            businessLicenseField.style.display = "none";
+        } else if (userTypeRadio[1].checked) {
+            businessLicenseField.style.display = "flex";
+        }
+
+        // 라디오 버튼 변경 시 동작
+        userTypeRadio.forEach(radio => {
+            radio.addEventListener("change", () => {
+                if (radio.value === "개인") {
+                    businessLicenseField.style.display = "none";
+                } else if (radio.value === "사업자") {
+                    businessLicenseField.style.display = "flex";
+                }
+            });
+        });
+
+        // 사업자 등록증 파일 선택 시 동작
+        const businessLicenseInput = document.getElementById("business_license");
+        businessLicenseInput.addEventListener("change", () => {
+            const file = businessLicenseInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const extractedText = extractTextFromImage(e.target.result);
+                businessLicenseText.value = extractedText;
+                extractedTextField.value = extractedText;
+            };
+            reader.readAsDataURL(file);
+        });
+
+</script>

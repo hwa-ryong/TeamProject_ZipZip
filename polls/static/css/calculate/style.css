@@ -1,0 +1,50 @@
+@charset 'utf-8';
+
+@font-face {
+            font-family: 'GangwonEdu_OTFBoldA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+}
+
+/* 전체 */
+* {margin: 0; padding: 0;}
+
+body {
+    font-family: 'GangwonEdu_OTFBoldA';
+}
+
+/* 구독 컨테이너 */
+#subscription {margin: 1% 20% auto; padding: 30px;
+    border: 1px solid #ccc; border-radius: 8px; font-size: 12px; background: white}
+
+/* 폼 라벨 */
+label {display: block; margin-bottom: 5px; font-weight: bold;
+    font-size: 1.5em}
+
+/* 입력 필드 */
+input[type="number"] {width: 100%; height: 40px; padding: 15px 10px 10px 15px; margin-bottom: 5px;
+    border: 1px solid #ccc; border-radius: 3px; display: block;
+    box-sizing: border-box; font-size: 18px;}
+
+/* 계산 버튼 */
+input[type="submit"] {width: 100%; padding: 15px; background-color: rgb(82, 126, 127); \
+    border: none; color: white; border-radius: 3px; cursor: pointer; font-size: 1.5em; font-family: 'GangwonEdu_OTFBoldA';}
+
+/* 계산 버튼 호버 효과 */
+input[type="submit"]:hover {background-color: rgb(28, 79, 79);}
+
+/* 총점수 */
+h1 {text-align: center; color: rgb(28, 79, 79); margin: 2%}
+
+/* 반응형 시작 */
+@media screen and (max-width: 1200px) {
+    #subscription {
+        margin: 1% 5% auto;
+        padding: 10px;
+    }
+
+    h1 {
+        margin: 5%;
+    }
+}

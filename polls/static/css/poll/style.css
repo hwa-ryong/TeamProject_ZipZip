@@ -1,0 +1,1386 @@
+*{margin: 0; padding: 0;}
+
+@font-face {
+            font-family: 'GangwonEdu_OTFBoldA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+}
+
+@font-face {
+    font-family: '박용준 투사회보';
+    src: url('../../webfonts/박용준 투사회보체.woff') format('woff');
+         url('../../webfonts/박용준 투사회보체.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background: #e8ecef;
+    font-family: 'GangwonEdu_OTFBoldA';
+    border-top: 10px solid #1d4f50
+}
+
+ul li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 사이드바 메뉴 아이콘 시작 */
+.side-bar-icon-box {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 4px;
+}
+
+.side-bar-icon1 {
+    position: relative;
+    width: 23px;
+    height: 17px;
+    margin: 15px;
+    margin-top: 20px;
+    transition: .5s;
+}
+
+.side-bar-icon1 > div {
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    background-color: white;
+    transition: all .5s;
+}
+
+.side-bar-icon1 > div:nth-of-type(1) {
+    top: 0;
+    width: auto;
+    left: 0;
+    right: 0;
+    transition: all .5s, left calc(.5s / 2) calc(.5s / 2), right calc(.5s / 2) calc(.5s / 2), height calc(.5s / 2) 0s;
+}
+
+.side-bar-icon1 > div:nth-of-type(2) {
+    top: 40%;
+    transform-origin: bottom left;
+}
+
+.side-bar-icon1 > div:nth-of-type(3) {
+    top: 80%;
+    left: auto;
+    right: 0;
+    transform-origin: bottom right;
+}
+
+
+.side-bar:hover .side-bar-icon1 {
+    transform: translate(-150px, 0);
+}
+
+.side-bar:hover .side-bar-icon1 > div:nth-of-type(2) {
+    transform: rotate(45deg);
+    width: 70.5%;
+    height: 25%;
+}
+
+.side-bar:hover .side-bar-icon1 > div:nth-of-type(3) {
+    top: 40%;
+    transform:rotate(-45deg);
+    width: 70.5%;
+    height: 25%;
+}
+
+.side-bar:hover .side-bar-icon1 > div:nth-of-type(1) {
+    left: 41%;
+    right: 41%;
+    height: 100%;
+    transition: all .5s, left calc(.5s / 2) 0s, right calc(.5s / 2) 0s, height calc(.5s / 2) calc(.5s / 2);
+}
+/* 사이드바-아이콘 끝 */
+
+/* 사이드바 */
+.side-bar {
+    height: 1200px;
+    position: fixed;
+    background: rgb(29,79,80);
+    width: 240px;
+    min-height: 100%;
+    border-radius: 20px;
+    transform: translate(calc(230px * -0.75), 0);
+    transition: .5s;
+    z-index:1000;
+    box-sizing: border-box;
+}
+
+.side-bar:hover {
+    transform: translate(-20px, 0);
+}
+
+.side-bar > ul ul {
+    display: none;
+}
+
+.side-bar ul > li > a {
+    display: block;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    border-left: 1px solid #ccc
+}
+
+.side-bar > ul > li > a:first-child {
+    position: relative;
+}
+
+.side-bar:hover > ul > li > a {
+    padding-left: 85px;
+}
+
+/* 사이드바 아이콘 */
+.side-bar > ul > li > a > i {
+    display: inline-block;
+    position: absolute;
+    top: 24%;
+    right: 5%;
+    width: 30px;
+    height: 30px;
+}
+
+.side-bar:hover > ul > li > a > i {
+    position: absolute;
+    left: 36px;
+}
+
+.side-bar > ul > li > a > .side-icon2 {
+    background-image: url('../../images/menubar/1.지도.png');
+    background-size: cover;
+}
+.side-bar > ul > li > a > .side-icon3 {
+    background-image: url('../../images/menubar/2.청약.png');
+    background-size: cover;
+}
+.side-bar > ul > li > a > .side-icon4 {
+    background-image: url('../../images/menubar/3.알려드려요.png');
+    background-size: cover;
+}
+.side-bar > ul > li > a > .side-icon5 {
+    background-image: url('../../images/menubar/4.커뮤니티.png');
+    background-size: cover;
+}
+.side-bar > ul > li > a > .side-icon6 {
+    background-image: url('../../images/menubar/5.고객서비스.png');
+    background-size: cover;
+}
+/* 사이드바 아이콘 끝 */
+
+.side-bar > ul > li {
+    position: relative;
+}
+
+.side-bar ul > li:hover > a {
+    background: #4a7e7f;
+    border-left: 4px solid #f8b62c;
+    color: #f8b62c
+}
+
+.side-bar > ul > li:hover > ul {
+    display: block;
+    position: absolute;
+    background: #4a7e7f;
+    top: 0;
+    left: 100%;
+    width: 100%;
+}
+
+.side-bar > ul > li > ul > .m_search {
+    display: flex;
+    justify-content: space-between;
+}
+
+.side-bar > ul > li > ul > .m_search > a {
+    padding-left: 12px;
+    flex: 1;
+}
+
+/* 사이드바 끝 */
+
+
+/* header 시작 */
+.header-bar {
+    position: relative;
+    background: white;
+    width: 100%;
+    height: 180px;
+    padding: 10px;
+    border-bottom: 4px solid #f8b62c;
+    box-sizing: border-box;
+}
+
+.header-bar a {
+    color: black
+}
+
+/* header-logo 시작 */
+.header-bar > .header-icon-box {
+    position: relative;
+    width: 20%;
+    height: 80px;
+    margin: 5px auto;
+    text-align: center;
+}
+
+.header-bar > .header-icon-box > .header-logo {
+    width: 100%;
+    height: 100%;
+/*    background: url(../../static/images/logo/중간.png) no-repeat center;
+    background-size: contain;*/
+    font-size: 55px;
+    font-family: "박용준 투사회보";
+    padding: 30px 0 0 0;
+}
+
+.header-bar > .header-icon-box > .header-logo > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #1d4f50;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.header-bar > .header-icon-box > .header-logo > a > img {
+    width: 50px;
+    margin-right :5px
+}
+
+.header-bar > .header-icon-box > ul > li {
+    display: inline-block;
+}
+/* header-logo 끝 */
+
+/* header-side-login 시작 */
+.header-bar > .header-side-login {
+    position: absolute;
+    top: 15px;
+    right: 0;
+
+}
+
+.header-bar > .header-side-login > ul {
+    text-align: center;
+    background: #f8b62c;
+    border-radius: 5px;
+    padding: 5px 35px 5px 40px;
+}
+
+.header-bar > .header-side-login > ul > li {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 0 7px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.header-bar > .header-side-login > ul > li > a:hover {
+    color: white;
+    font-weight: bold;
+}
+/* header-side-login 끝 */
+
+/* header-menu 시작 */
+.header-bar > .header-menu {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.header-bar > .header-menu > img {
+    display: none;
+}
+
+.header-bar > .header-menu > ul > li {
+    display: inline-block;
+    position: relative;
+    height: 50px;
+
+}
+
+.header-bar > .header-menu > ul > li > ul {
+    visibility: hidden;
+}
+
+.header-bar > .header-menu > ul > li > a {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 20px 25px 15px 25px;
+    letter-spacing: 2px;
+
+}
+.header-bar > .header-menu > ul > li > a:hover {
+    color: white;
+    font-weight: bold;
+    background: #f8b62c;
+    letter-spacing: 2px;
+
+}
+
+.header-bar > .header-menu > ul > li > a:first-child {
+    position: relative;
+}
+.header-bar > .header-menu > ul > li > ul a {
+    font-size: 18px;
+}
+.header-bar > .header-menu > ul > li > ul a:hover {
+    color: #116565;
+    font-weight: 700;
+
+}
+
+
+.header-bar > .header-menu > ul > li > ul {
+    position: absolute;
+    top: 0;
+    width: 125%;
+    height: 200px;
+    z-index: 9999;
+    margin-top: 33px;
+    padding-left: 20px;
+    padding-top: 20px;
+    background: white;
+    font-size: 20px;
+    border: 1px solid #f8b62c
+}
+
+.header-bar > .header-menu > ul > li:hover > ul {
+    visibility: visible;
+    z-index: 9999;
+}
+
+.header-bar > .header-menu > ul > li > ul > li {
+    height: 45px;
+    font-size: 0.9rem;
+    z-index: 1;
+
+
+}
+
+.header-bar > .header-menu > ul > li > .header-score > li:last-of-type {
+    width: 120%;
+}
+
+.header-bar > .header-menu > ul > li:first-of-type > ul > li {
+    width: 370%;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.header-bar > .header-menu > ul > li:first-of-type > ul > li > a {
+    font-weight: bold;
+}
+
+/* header-menu 끝 */
+
+
+
+/* index 시작 */
+.main_index {
+    width: 100%;
+    height: 1400px;
+    background: white;
+}
+
+ul > li {
+    list-style: none;
+}
+
+/* 상단 배경, 로고, 로그인/회원가입 시작 */
+.main_index .main_top_index .main_login_register ul{
+    padding: 3px
+}
+
+.main_index > .main_top_index {
+    width: 100%;
+    height: 350px;
+    background: url(../../images/menubar/메인_배경_집집.jpg) no-repeat center;
+    background-size: cover;
+    position: relative;
+}
+
+.main_index > .main_top_index > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.main_index > .main_top_index > .main_logo {
+    width: 8%;
+    height: 80px;
+    background: url(../../images/logo/중간.png) no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px;
+}
+
+.main_index > .main_top_index > .main_login_register {
+    font-size: 1.2rem;
+    background-color: rgb(117, 168, 169);
+    width: 16%;
+    position: absolute;
+    top: 3%;
+    right: 0;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 5px;
+    padding-top: 9px;
+}
+
+.main_index > .main_top_index > .main_login_register > ul > li > a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    padding: 0 3px;
+}
+
+.main_index > .main_top_index > .main_login_register > ul > li {
+    display: inline-block;
+}
+
+.main_index > .main_top_index > .main_login_register > ul > li > a:hover:first-of-type {
+    text-decoration: underline;
+}
+
+.main_index > .main_top_index > .main_login_register > ul > li:first-of-type {
+    border-right: 1px solid white;
+    padding-right: 10px;
+}
+
+.main_index > .main_top_index > .main_login_register > ul > li:first-of-type > a {
+    flex: 1;
+}
+/* 상단 배경, 로고, 로그인/회원가입 끝 */
+
+/* 중간 검색, 배경 시작 */
+.main_index > .main_top_index > .main_middle_index {
+    position: absolute;
+    bottom: -120px;
+    width: 100%;
+    height: 120px;
+    background-color: rgb(0, 65, 66);
+}
+
+.main_index > .main_top_index > .main_middle_index > div {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.main_index > .main_top_index > .main_middle_index > div > p {
+    margin: 18px 0 8px -30px;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.main_index > .main_top_index > .main_middle_index > div > form {
+    width: 100%;
+}
+
+.main_index > .main_top_index > .main_middle_index > div > form > ul > li > input {
+    width: 100%;
+    height: 44px;
+    font-size: 1.5rem;
+    padding-top: 8px;
+    font-size: 1.5rem;
+    padding: 8px 0 0 10px;
+    margin-left: -30px;
+}
+
+.main_index > .main_top_index > .main_middle_index > div > form > ul {
+    position: relative;
+}
+
+.main_index > .main_top_index > .main_middle_index > div > form > ul > .main_middle_search {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    width: 10%;
+    height: 51px;
+    transform: translateY(-50%);
+}
+
+.main_index > .main_top_index > .main_middle_index > div > form > ul > .main_middle_search > button {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 65, 66);
+    background-image: url(../../images/menubar/검색.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    z-index: 9999;
+    cursor: pointer;
+}
+/* 중간 검색, 배경 끝 */
+
+/* 하단 4개 탭 시작 */
+.main_index > .main_top_index > .main_bottom_index {
+    width: 70%;
+    height: 440px;
+    position: absolute;
+    left: 50%;
+    bottom: -580px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div {
+    width: 21%;
+    cursor: pointer;
+    position: relative;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > div {
+    width: 100%;
+}
+
+.main_index > .main_top_index > .main_bottom_index > .main_subscription {
+    margin-left: 50px;
+    background-color: rgb(121, 203, 196);
+}
+
+.main_index > .main_top_index > .main_bottom_index > .main_notice {
+    background-color: rgb(59, 189, 228);
+}
+
+.main_index > .main_top_index > .main_bottom_index > .main_community {
+    background-color: rgb(255, 162, 82);
+}
+
+.main_index > .main_top_index > .main_bottom_index > .main_customer_service {
+    margin-right: 50px;
+    background-color: rgb(237, 95, 107);
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > div:first-of-type {
+    position: absolute;
+    top: 0;
+    height: 50%;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > div:first-of-type > p {
+    margin-left: 30px;
+    color: white;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > div:first-of-type > p:first-of-type {
+    margin-top: 45%;
+    padding-bottom: 20px;
+    font-size: 2.2rem;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > div:first-of-type > p:last-of-type {
+    padding-left: 7px;
+    font-size: 1.2rem;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > div:last-child {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    height: 25%;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div:hover > div:nth-of-type(2) {
+    opacity: 1;
+    transition: opacity .8s ease-in-out;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div:hover > div:last-of-type {
+    opacity: 0;
+    transition: .3s ease-in;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu,
+.main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu,
+.main_index > .main_top_index > .main_bottom_index > div > .main_community_menu,
+.main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu {
+    position: absolute;
+    bottom: 1.25%;
+    left: 2.5%;
+    right: 2.5%;
+    height: 90%;
+    width: 95%;
+    background-color: white;
+    opacity: 0;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > p {
+    background-color: rgb(121, 203, 196);
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+    padding-bottom: 5px;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > p {
+    background-color: rgb(59, 189, 228);
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+    padding-bottom: 5px;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > p {
+    background-color: rgb(255, 162, 82);
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+    padding-bottom: 5px;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > p {
+    background-color: rgb(237, 95, 107);
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+    padding-bottom: 5px;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > .main_subscription_subMenu,
+.main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > .main_notice_subMenu,
+.main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > .main_community_subMenu,
+.main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > .main_customer_service_subMenu {
+    display: flex;
+    width: 100%;
+    height: 0;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > .main_subscription_subMenu > div:first-of-type {
+    width: 100%;
+    height: 0;
+    border-right: 3.5vw solid transparent;
+    border-bottom: 3.5vw solid transparent;
+    border-top: 3.5vw solid rgb(121, 203, 196);
+    border-left: 3.5vw solid rgb(121, 203, 196);
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > .main_notice_subMenu > div:first-of-type {
+    width: 100%;
+    height: 0;
+    border-right: 3.5vw solid transparent;
+    border-bottom: 3.5vw solid transparent;
+    border-top: 3.5vw solid rgb(59, 189, 228);
+    border-left: 3.5vw solid rgb(59, 189, 228);
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > .main_community_subMenu > div:first-of-type {
+    width: 100%;
+    height: 0;
+    border-right: 3.5vw solid transparent;
+    border-bottom: 3.5vw solid transparent;
+    border-top: 3.5vw solid rgb(255, 162, 82);
+    border-left: 3.5vw solid rgb(255, 162, 82);
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > .main_customer_service_subMenu > div:first-of-type {
+    width: 100%;
+    height: 0;
+    border-right: 3.5vw solid transparent;
+    border-bottom: 3.5vw solid transparent;
+    border-top: 3.5vw solid rgb(237, 95, 107);
+    border-left: 3.5vw solid rgb(237, 95, 107);
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > .main_subscription_subMenu > div:last-of-type {
+    width: 100%;
+    height: 0;
+    border-right: 3.5vw solid rgb(121, 203, 196);
+    border-bottom: 3.5vw solid transparent;
+    border-top: 3.5vw solid rgb(121, 203, 196);
+    border-left: 3.5vw solid transparent;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > .main_notice_subMenu > div:last-of-type {
+    width: 100%;
+    height: 0;
+    border-right: 3.5vw solid rgb(59, 189, 228);
+    border-bottom: 3.5vw solid transparent;
+    border-top: 3.5vw solid rgb(59, 189, 228);
+    border-left: 3.5vw solid transparent;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > .main_community_subMenu > div:last-of-type {
+    width: 100%;
+    height: 0;
+    border-right: 3.5vw solid rgb(255, 162, 82);
+    border-bottom: 3.5vw solid transparent;
+    border-top: 3.5vw solid rgb(255, 162, 82);
+    border-left: 3.5vw solid transparent;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > .main_customer_service_subMenu > div:last-of-type {
+    width: 100%;
+    height: 0;
+    border-right: 3.5vw solid rgb(237, 95, 107);
+    border-bottom: 3.5vw solid transparent;
+    border-top: 3.5vw solid rgb(237, 95, 107);
+    border-left: 3.5vw solid transparent;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > div:last-of-type,
+.main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > div:last-of-type,
+.main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > div:last-of-type,
+.main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > div:last-of-type {
+    height: 55%;
+    position: absolute;
+    bottom: 1.25%;
+    left: 10%;
+    right: 10%;
+    font-size: 1.4rem;
+    z-index: 9999;
+    text-align: center;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > div:last-of-type > p,
+.main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > div:last-of-type > p,
+.main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > div:last-of-type > p,
+.main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > div:last-of-type > p {
+    margin: 15px 0;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > div:last-of-type > p:hover > a,
+.main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > div:last-of-type > p:hover > a,
+.main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > div:last-of-type > p:hover > a,
+.main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > div:last-of-type > p:hover > a {
+    text-decoration: underline;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > div:last-of-type > p > a,
+.main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > div:last-of-type > p > a,
+.main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > div:last-of-type > p > a,
+.main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > div:last-of-type > p > a {
+    text-decoration: none;
+    color: rgb(29, 28, 28);
+}
+/* 하단 4개 탭 끝 */
+
+/* 하단 4개 탭 메뉴 아이콘 시작 */
+.main_index > .main_top_index > .main_bottom_index > div > .main_subscription_icon {
+    background: url(../../images/menubar/2.청약.png) no-repeat right;
+    background-size: contain;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_notice_icon {
+    background: url(../../images/menubar/3.알려드려요.png) no-repeat right;
+    background-size: contain;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_community_icon {
+    background: url(../../images/menubar/4.커뮤니티.png) no-repeat right;
+    background-size: contain;
+}
+
+.main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_icon {
+    background: url(../../images/menubar/5.고객서비스.png) no-repeat right;
+    background-size: contain;
+}
+/* 하단 4개 탭 메뉴 아이콘 끝 */
+
+
+/* 바텀 card_list 시작  */
+.slide_container{
+    width: 80%;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    bottom: -1050px;
+    transform: translateX(-50%);
+
+}
+
+
+.slide_wrapper{
+    position: relative;
+    width: 960px;
+    margin: 0 auto;
+    height: 300px;
+    bottom:0;
+    overflow: hidden;
+}
+
+.slide_wrapper .slides li a img {
+    width: 100%;
+    height: 300px;
+
+}
+
+.slides{
+    position: absolute;
+    left: 0; top: 0;
+    transition: left 0.5s ease-out;
+}
+
+.slides li:not(:last-child){
+    float: left;
+    margin-right: 30px;
+}
+
+.slide_wrapper .slides{
+    list-style: none;
+}
+.controls{
+    text-align: center;
+    margin-top: 50px;
+    cursor: pointer;
+}
+
+.controls span{
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 0 10px;
+}
+/* 바텀 card_list 끝 */
+
+/* header 마이페이지 */
+.header-side-login > ul > li > .mypage_view {
+    position: relative;
+}
+
+/* 메인 마이페이지 */
+.main_index > .main_top_index > .main_login_register > ul > .logmy {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main_index > .main_top_index > .main_login_register > ul > .logmy > a:first-of-type {
+    width: 35%;
+    padding-left: 35px;
+}
+
+.main_index > .main_top_index > .main_login_register > ul > li > .mypage_view {
+    position: relative;
+    width: 25%;
+}
+
+.main_index > .main_top_index > .main_login_register > ul > li > .mypage_view:hover {
+    text-decoration: underline;
+}
+
+
+/* index 끝 */
+
+/* 반응형 시작 */
+@media screen and (max-width: 1200px) {
+    .side-bar {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .side-bar {
+        display: none;
+    }
+
+    .header-bar {
+        height: 60px;
+    }
+
+    .header-bar > .header-icon-box {
+        position: relative;
+        width: 50%;
+        height: 60px;
+        margin: 10px 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+    }
+
+    .header-bar > .header-icon-box > .header-logo {
+        padding: 0;
+    }
+
+    .header-bar > .header-icon-box > .header-logo > a {
+        font-size: 2.4rem;
+    }
+
+    .header-bar > .header-icon-box > .header-logo > a > img {
+        width: 40px;
+        height: 28px;
+    }
+
+    .header-bar > .header-side-login {
+        width: 30%;
+        position: absolute;
+        top: 3px;
+        right: 0;
+    }
+
+    .header-bar > .header-side-login > ul {
+        padding: 3px 5px;
+    }
+
+    .header-bar > .header-side-login > ul > li {
+        font-size: 0.6rem;
+    }
+
+    .header-bar > .header-menu {
+        position: absolute;
+        top: 3px;
+        left: 0;
+        display: block;
+        width: 60%;
+        height: 100%;
+        z-index: 200;
+    }
+
+    .header-bar > .header-menu > img {
+        display: block;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+    }
+
+    .header-bar > .header-menu > ul {
+        display: none;
+        position: absolute;
+        top: 50px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .header-bar > .header-menu > ul > li {
+        display: block;
+        line-height: 55px;
+        background-color: rgb(29,79,80);
+        border-bottom: 1px solid #ccc;
+        opacity: 0;
+    }
+
+    .header-bar > .header-menu > ul > li:focus > ul {
+        visibility: visible;
+        z-index: 9999;
+    }
+
+    .header-bar > .header-menu > ul > li > a {
+        font-size: 1.1rem;
+        color: white;
+        padding: 0 0 0 10px;
+        display: block;
+    }
+
+    .header-bar > .header-menu > ul > li > ul {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        padding: 0 0 0 10px;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .header-bar > .header-menu > ul > li > ul > li > a {
+        font-size: 15px;
+    }
+}
+
+.touchDiv.active {
+    opacity: 1;
+    transition: opacity .8s ease-in-out;
+}
+
+@media screen and (max-width: 1290px) {
+    .main_index > .main_top_index > .main_bottom_index > div:hover > div:nth-of-type(2) {
+    }
+
+    .main_index > .main_top_index > .main_bottom_index {
+        width: 80%;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > .main_subscription {
+        margin-left: 20px;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > .main_customer_service {
+        margin-right: 20px;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > .main_subscription_subMenu > div:first-of-type {
+        border-right: 4.15vw solid transparent;
+        border-bottom: 4vw solid transparent;
+        border-top: 4vw solid rgb(121, 203, 196);
+        border-left: 4vw solid rgb(121, 203, 196);
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > .main_notice_subMenu > div:first-of-type {
+        border-right: 4.15vw solid transparent;
+        border-bottom: 4vw solid transparent;
+        border-top: 4vw solid rgb(59, 189, 228);
+        border-left: 4vw solid rgb(59, 189, 228);
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > .main_community_subMenu > div:first-of-type {
+        border-right: 4.15vw solid transparent;
+        border-bottom: 4vw solid transparent;
+        border-top: 4vw solid rgb(255, 162, 82);
+        border-left: 4vw solid rgb(255, 162, 82);
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > .main_customer_service_subMenu > div:first-of-type {
+        border-right: 4.15vw solid transparent;
+        border-bottom: 4vw solid transparent;
+        border-top: 4vw solid rgb(237, 95, 107);
+        border-left: 4vw solid rgb(237, 95, 107);
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > .main_subscription_subMenu > div:last-of-type {
+        border-right: 4vw solid rgb(121, 203, 196);
+        border-bottom: 4vw solid transparent;
+        border-top: 4vw solid rgb(121, 203, 196);
+        border-left: 4vw solid transparent;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > .main_notice_subMenu > div:last-of-type {
+        border-right: 4vw solid rgb(59, 189, 228);
+        border-bottom: 4vw solid transparent;
+        border-top: 4vw solid rgb(59, 189, 228);
+        border-left: 4vw solid transparent;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > .main_community_subMenu > div:last-of-type {
+        border-right: 4vw solid rgb(255, 162, 82);
+        border-bottom: 4vw solid transparent;
+        border-top: 4vw solid rgb(255, 162, 82);
+        border-left: 4vw solid transparent;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > .main_customer_service_subMenu > div:last-of-type {
+        border-right: 4vw solid rgb(237, 95, 107);
+        border-bottom: 4vw solid transparent;
+        border-top: 4vw solid rgb(237, 95, 107);
+        border-left: 4vw solid transparent;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .main_index > .main_top_index > .main_login_register {
+        width: 23%;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index {
+        width: 90%;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > .main_subscription {
+        margin-left: 15px;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > .main_customer_service {
+        margin-right: 15px;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > .main_subscription_subMenu > div:first-of-type {
+        border-right: 4.65vw solid transparent;
+        border-bottom: 4.5vw solid transparent;
+        border-top: 4.5vw solid rgb(121, 203, 196);
+        border-left: 4.5vw solid rgb(121, 203, 196);
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > .main_notice_subMenu > div:first-of-type {
+        border-right: 4.65vw solid transparent;
+        border-bottom: 4.5vw solid transparent;
+        border-top: 4.5vw solid rgb(59, 189, 228);
+        border-left: 4.5vw solid rgb(59, 189, 228);
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > .main_community_subMenu > div:first-of-type {
+        border-right: 4.65vw solid transparent;
+        border-bottom: 4.5vw solid transparent;
+        border-top: 4.5vw solid rgb(255, 162, 82);
+        border-left: 4.5vw solid rgb(255, 162, 82);
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > .main_customer_service_subMenu > div:first-of-type {
+        border-right: 4.65vw solid transparent;
+        border-bottom: 4.5vw solid transparent;
+        border-top: 4.5vw solid rgb(237, 95, 107);
+        border-left: 4.5vw solid rgb(237, 95, 107);
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > .main_subscription_subMenu > div:last-of-type {
+        border-right: 4.5vw solid rgb(121, 203, 196);
+        border-bottom: 4.5vw solid transparent;
+        border-top: 4.5vw solid rgb(121, 203, 196);
+        border-left: 4.5vw solid transparent;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > .main_notice_subMenu > div:last-of-type {
+        border-right: 4.5vw solid rgb(59, 189, 228);
+        border-bottom: 4.5vw solid transparent;
+        border-top: 4.5vw solid rgb(59, 189, 228);
+        border-left: 4.5vw solid transparent;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > .main_community_subMenu > div:last-of-type {
+        border-right: 4.5vw solid rgb(255, 162, 82);
+        border-bottom: 4.5vw solid transparent;
+        border-top: 4.5vw solid rgb(255, 162, 82);
+        border-left: 4.5vw solid transparent;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > .main_customer_service_subMenu > div:last-of-type {
+        border-right: 4.5vw solid rgb(237, 95, 107);
+        border-bottom: 4.5vw solid transparent;
+        border-top: 4.5vw solid rgb(237, 95, 107);
+        border-left: 4.5vw solid transparent;
+    }
+
+    .slide_wrapper {
+        width: 760px;
+    }
+
+    .slides li:not(:last-child) {
+        margin-right: 5px;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .main_index > .main_top_index > .main_bottom_index {
+        width: 100%;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > .main_subscription {
+        margin-left: 5px;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > .main_customer_service {
+        margin-right: 5px;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > .main_subscription_subMenu > div:first-of-type {
+        border-right: 5.15vw solid transparent;
+        border-bottom: 5vw solid transparent;
+        border-top: 5vw solid rgb(121, 203, 196);
+        border-left: 5vw solid rgb(121, 203, 196);
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > .main_notice_subMenu > div:first-of-type {
+        border-right: 5.15vw solid transparent;
+        border-bottom: 5vw solid transparent;
+        border-top: 5vw solid rgb(59, 189, 228);
+        border-left: 5vw solid rgb(59, 189, 228);
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > .main_community_subMenu > div:first-of-type {
+        border-right: 5.15vw solid transparent;
+        border-bottom: 5vw solid transparent;
+        border-top: 5vw solid rgb(255, 162, 82);
+        border-left: 5vw solid rgb(255, 162, 82);
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > .main_customer_service_subMenu > div:first-of-type {
+        border-right: 5.15vw solid transparent;
+        border-bottom: 5vw solid transparent;
+        border-top: 5vw solid rgb(237, 95, 107);
+        border-left: 5vw solid rgb(237, 95, 107);
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > .main_subscription_subMenu > div:last-of-type {
+        border-right: 5vw solid rgb(121, 203, 196);
+        border-bottom: 5vw solid transparent;
+        border-top: 5vw solid rgb(121, 203, 196);
+        border-left: 5vw solid transparent;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > .main_notice_subMenu > div:last-of-type {
+        border-right: 5vw solid rgb(59, 189, 228);
+        border-bottom: 5vw solid transparent;
+        border-top: 5vw solid rgb(59, 189, 228);
+        border-left: 5vw solid transparent;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > .main_community_subMenu > div:last-of-type {
+        border-right: 5vw solid rgb(255, 162, 82);
+        border-bottom: 5vw solid transparent;
+        border-top: 5vw solid rgb(255, 162, 82);
+        border-left: 5vw solid transparent;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > .main_customer_service_subMenu > div:last-of-type {
+        border-right: 5vw solid rgb(237, 95, 107);
+        border-bottom: 5vw solid transparent;
+        border-top: 5vw solid rgb(237, 95, 107);
+        border-left: 5vw solid transparent;
+    }
+
+    .main_index > .main_top_index > .main_middle_index > div > form > ul > li > input {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 870px) {
+    .main_index > .main_top_index > .main_bottom_index {
+        display: block;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div {
+        width: 60%;
+        height: 100px;
+        margin: 10px auto;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > .main_subscription {
+        margin-left: auto;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > .main_customer_service {
+        margin-right: auto;
+    }
+
+    .main_index > .main_top_index > .main_middle_index > div {
+        width: 75%;
+    }
+
+    .main_index > .main_top_index > .main_middle_index > div > p {
+        margin: 18px 0 8px -8px;
+    }
+
+    .main_index > .main_top_index > .main_middle_index > div > form > ul > li > input {
+        margin-left: -5px;
+    }
+
+    .main_index > .main_top_index > .main_middle_index > div > form > ul > .main_middle_search {
+        right: -5px;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > div:first-of-type > p:first-of-type {
+        font-size: 1.4rem;
+        margin-top: 15px;
+        padding-bottom: 10px;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > div:first-of-type > p:last-of-type {
+        font-size: 1rem;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_community_menu,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu {
+        bottom: 5%;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > p,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > p,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > p,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > p {
+        font-size: 1.4rem;
+        text-align: left;
+        padding-bottom: 2.5px;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > div:last-of-type,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > div:last-of-type,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > div:last-of-type,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > div:last-of-type {
+        font-size: 0.9rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > div:last-of-type > p,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > div:last-of-type > p,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > div:last-of-type > p,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > div:last-of-type > p {
+        margin: auto 10px;
+    }
+
+    .main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > .main_subscription_subMenu,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > .main_notice_subMenu,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > .main_community_subMenu,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > .main_customer_service_subMenu {
+        display: none;
+    }
+
+    .slide_wrapper {
+        width: 490px;
+    }
+
+    .main_index > .main_top_index > .main_login_register {
+        width: 30%;
+    }
+
+    .main_index > .main_top_index > .main_login_register > ul > .logmy > a:first-of-type {
+        padding-left: 18px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .main_index > .main_top_index > .main_bottom_index > div > .main_subscription_menu > div:last-of-type,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_notice_menu > div:last-of-type,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_community_menu > div:last-of-type,
+    .main_index > .main_top_index > .main_bottom_index > div > .main_customer_service_menu > div:last-of-type {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 586px) {
+    .main_index > .main_top_index > .main_bottom_index > div {
+        width: 85%;
+        height: 100px;
+        margin: 10px auto;
+    }
+
+    .main_index > .main_top_index > .main_middle_index > div > p {
+        font-size: 1.1rem;
+    }
+
+    .main_index > .main_top_index > .main_middle_index > div > form > ul > .main_middle_search {
+        width: 15%;
+    }
+
+    .main_index > .main_top_index > .main_login_register {
+        font-size: 0.9rem;
+        width: 35%;
+    }
+
+    .main_index > .main_top_index > .main_login_register > ul > li:first-of-type > a {
+        flex: 1;
+    }
+
+    .main_index > .main_top_index > .main_login_register > ul > .logmy > a:first-of-type {
+        padding-left: 8px;
+    }
+
+    .slide_wrapper {
+        width: 360px;
+    }
+
+    .main_index > .main_top_index > .main_logo {
+        width: 12%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .slide_wrapper {
+        width: 300px;
+    }
+}

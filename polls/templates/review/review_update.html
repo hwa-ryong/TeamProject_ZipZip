@@ -1,0 +1,80 @@
+<!-- review_update.html -->
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/board/css.css' %}">
+</head>
+
+<body>
+    {% include 'poll/sidebar.html' %}
+    {% include 'poll/header.html' %}
+    <!-- write 복사해서 내용만 바꿈 -->
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>게시글수정</strong>
+            <p>게시글 수정사항이 있으시면 작성해주세요.</p>
+        </div>
+
+        <div class="board_write_wrap">
+            <form action="{% url 'review:review_update' review_board.id %}" method="post">
+                {% csrf_token %}
+                <div class="board_write">
+
+                    <div class="title">
+                        <dl>
+                            <dt>제목</dt>
+                            <dd><input type="text" name="r_title" value="{{ form.r_title.value }}"></dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <dl>
+                            <dt>글쓴이</dt>
+                            <dd>{{ review_board.user }}</dd>
+                        </dl>
+                          <dl>
+                            <dt>구분</dt>
+                            <dd>
+                              <select name="r_type" id="r_type">
+                                        <option value="전/월세">전/월세</option>
+                                        <option value="매매">매매</option>
+                                        <option value="청약">청약</option>
+                                </select>
+                            </dd>
+                        </dl>
+                    </div>
+
+
+
+                    <div class="cont">
+                        <textarea name="r_content">{{ form.r_content.value }}</textarea>
+                    </div>
+                </div>
+
+                <div class="bt_wrap">
+                    <button type="submit" class="on">수정</button>
+                   <a href="{% url 'review:review_detail' review_board_id=review_board.id %}">취소</a>
+                </div>
+            </form>
+        </div>
+    </div>
+   {% include 'poll/footer.html' %}
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

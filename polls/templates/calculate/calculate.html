@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription</title>
+    <link rel="stylesheet" href="{% static 'css/calculate/style.css' %}">
+</head>
+<body>
+{% include 'poll/sidebar.html' %}
+{% include 'poll/header.html' %}
+    <div id="subscription">
+        <form method="post" action="">
+            {% csrf_token %}
+            <label for="home">무주택 기간:</label>
+            <input type="number" name="home" id="home" required><br>
+
+            <label for="family">부양가족 수:</label>
+            <input type="number" name="family" id="family" required><br>
+
+            <label for="bankbook">청약통장 가입기간:</label>
+            <input type="number" step="0.1" name="bankbook" id="bankbook" required><br>
+
+            <input type="submit" value="계산하기">
+        </form>
+    </div>
+    <h1>총 점수: {{ total_score }}</h1>
+{% include 'poll/footer.html' %}
+</body>
+</html>

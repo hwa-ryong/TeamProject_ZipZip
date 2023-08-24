@@ -1,0 +1,106 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/poll/style.css' %}">
+<header class="header-bar">
+    <section class="header-icon-box">
+        <div class="header-logo"><a href="{% url 'poll:index' %}"><img src="{% static 'images/logo/연함.png' %}" alt="">집집</a>
+        </div>
+    </section>
+    <section class="header-side-login">
+        <ul>
+            {% if user.is_authenticated %}
+            <li style="border-right: transparent;">
+                <a href="{% url 'common:signout' %}">
+                    로그아웃
+                </a>
+                <a href="{% url 'common:mypage' %}" class="mypage_view">(마이)</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'common:signin' %}">로그인</a>
+            </li>
+            <li>
+                <a href="{% url 'common:signin' %}">회원가입</a>
+            </li>
+            {% endif %}
+        </ul>
+    </section>
+    <section class="header-menu">
+        <img src="{% static 'images/menubar/header_button.png' %}" alt="메뉴 아이콘" id="header-menu-btn">
+        <ul class="header-menu-ul">
+            <li>
+                <a href="{% url 'map:search' %}">
+                    <span>집찾기</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>청약</span>
+                </a>
+                <ul class="header-score">
+                    <li><a href="{% url 'koreaCalendar:subCalendar' %}">청약 일정</a></li>
+                    <li><a href="{% url 'calculate:calculate' %}">청약점수 조회</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="{% url 'information:information' %}">
+                    <span>알려드려요</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>커뮤니티</span>
+                </a>
+                <ul>
+                    <li><a href="{% url 'community:free' %}">자유게시판</a></li>
+                    <li><a href="{% url 'review:review_main' %}">거래후기 게시판</a></li>
+                    <li><a href="{% url 'interior:interior' %}">인테리어 게시판</a></li>
+                    <li><a href="{% url 'news:news' %}">뉴스</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <span>고객서비스</span>
+                </a>
+                <ul>
+                    <li><a href="{% url 'notice:notice' %}">공지사항</a></li>
+                    <li><a href="{% url 'introduction:introduction' %}">소개</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</header>
+<script>
+    // li가 하나씩 나타나는 애니메이션
+    function animateOpacity() {
+        var elements = document.querySelectorAll('.header-menu ul li');
+        var delay = 70; // 각 요소의 변경 지연 시간 (밀리초)
+        var duration = 1000; // 애니메이션 지속 시간 (밀리초)
+
+        elements.forEach(function (element, index) {
+        var delayTime = index * delay;
+        setTimeout(function () {
+              element.style.transition = 'opacity ' + duration + 'ms';
+              element.style.opacity = 1;
+            }, delayTime);
+        });
+    }
+
+    let header_ul = document.querySelector('.header-menu-ul');
+    let header_menu = document.getElementById('header-menu-btn');
+    let nodes = document.querySelectorAll('.header-bar > .header-menu > ul > li');
+    let toggle = 0;
+
+    header_menu.addEventListener('click', function() {
+        if (toggle === 0) {
+            header_ul.style.display = 'block';
+            animateOpacity();
+            toggle = 1;
+        } else if (toggle === 1) {
+            nodes.forEach(function(node) {
+                node.style.opacity = 0;
+            });
+            header_ul.style.display = 'none';
+            toggle = 0;
+        };
+    });
+</script>

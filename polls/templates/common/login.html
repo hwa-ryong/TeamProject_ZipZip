@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+            integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/common/style.css' %}">
+</head>
+<body>
+{% include 'poll/sidebar.html' %}
+<section id="signinup-box" class="signinup-box">
+    <section id="login_container" class="login_container">
+        <h1>LOGIN</h1>
+
+        <div class="login_logo_container">
+            <a href="{% provider_login_url 'google' %}" style="cursor: pointer;" id="gogole_logo">
+                <img src="../../static/images/common/btn_google_light_normal_ios.svg" alt="구글아이콘" srcset="">
+            </a>
+            <a href="{% provider_login_url 'naver' %}" style="cursor: pointer;" id="naver_logo">
+                <img src="../../static/images/common/btn_naver.png" alt="네이버아이콘" srcset="" class="social_image">
+            </a>
+            <a href="{% provider_login_url 'kakao' %}" style="cursor: pointer;" id="kakao_logo">
+                <img src="../../static/images/common/btn_kakao.png" alt="카카오아이콘" srcset="" class="social_image">
+            </a>
+        </div>
+        <form action="" method="post">
+        {% csrf_token %}
+        {% if error %}
+            <div>
+                {{ error }}
+            </div>
+        {% endif %}
+            <div>
+                <input type="text" id="username" name="username" placeholder="아이디" value="{{ form.email.value|default_if_none:'' }}" required>
+            </div>
+            <div>
+                <input type="password" id="password" name="password" placeholder="비밀번호" value="{{ form.email.value|default_if_none:'' }}" required>
+            </div>
+            <button type="submit" class="signinup_button">로그인</button>
+        </form>
+
+    </section>
+    <section class="login_signin_container">
+        <h1>반갑습니다!</h1>
+        <p>집집에 오신 걸 환영합니다.<br>회원이 아니신가요?</p>
+        <button id="signinup_button" class="signinup_button">회원가입</button>
+    </section>
+</section>
+<section id="signinup-box2" class="signinup-box2">
+    <section class="login_signup_container">
+        <h1>어서오세요!</h1>
+        <p>집집에 오신 걸 환영합니다.<br>알뜰 부동산 정보 사이트 집집입니다.</p>
+        <button id="signinup_button2" class="signinup_button">로그인</button>
+    </section>
+    <div id="signup_data"></div>
+</section>
+<script>
+    $(document).ready(function() {
+        $('#signinup_button').click(function() {
+            $('#signinup-box2').css({
+                'z-index': '20',
+                'opacity': '1',
+                'left': '50%',
+                'transition': '1.5s ease-in-out'
+            });
+
+            $('#signinup-box').css({
+                'opacity': '0',
+                'left': '-20%',
+                'transition': '1.5s ease-in-out'
+            });
+        });
+
+        $('#signinup_button2').click(function() {
+            $('#signinup-box2').css({
+                'z-index': '2',
+                'opacity': '0',
+                'left': '120%',
+                'transition': '1.2s ease-in-out'
+            });
+
+            $('#signinup-box').css({
+                'opacity': '1',
+                'left': '50%',
+                'transition': '1.2s ease-in-out'
+            });
+        });
+
+        $.ajax({
+            url: '{% url 'common:signup' %}',
+            type: 'GET',
+            success: function(data) {
+                $('#signup_data').html(data);
+
+                $('#signup_data').on('submit', '#signup_form', function(e) {
+                    e.preventDefault();
+
+                    // 폼 데이터 가져오기
+                    var formData = $(this).serialize();
+
+                    // 회원가입 폼 데이터 전송
+                    $.ajax({
+                        url: '{% url 'common:signup' %}',
+                        type: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            if (response.success) {
+                                // 성공적으로 가입되었을 때 처리
+                                window.location.href = "{% url 'poll:index' %}";
+                            } else {
+                                // 가입 실패 시 에러 메시지 처리
+                                $('.error_data').empty();
+                                $('.error_data').append(response.errors.form_errors);
+                            }
+                        },
+                        error: function() {
+                            console.log('회원가입 실패');
+                        }
+                    });
+                });
+            },
+            error: function() {
+                console.log('Error occurred during AJAX request.');
+            }
+        });
+    });
+</script>
+</body>
+</html>

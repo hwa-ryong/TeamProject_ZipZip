@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 상세보기</title>
+    <link rel="stylesheet" href="{% static 'css/board/css.css' %}">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+            integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+{% include 'poll/sidebar.html' %}
+{% include 'poll/header.html' %}
+<div class="board_wrap">
+    <div class="board_view_wrap">
+        <div class="board_view">
+            <div class="title">
+                {{ free_board.b_title }}
+            </div>
+            <div class="info">
+                <dl>
+                    <dt>번호</dt>
+                    <dd>{{free_board.id}}</dd>
+                </dl>
+                <dl>
+                    <dt>글쓴이</dt>
+                    <dd>{{free_board.user}}</dd>
+                </dl>
+                {% if free_board.b_modifydate %}
+                <dl>
+                    <dt>작성일</dt>
+                    <dd>{{ free_board.b_regdate|date:"y-m-d"}}</dd>
+                </dl>
+                <dl>
+                    <dt>수정일</dt>
+                    <dd>{{ free_board.b_modifydate|date:"y-m-d"}}</dd>
+                </dl>
+                {% else %}
+                <dl>
+                    <dt>작성일</dt>
+                    <dd>{{ free_board.b_regdate|date:"y-m-d"}}</dd>
+                </dl>
+                {% endif %}
+                <dl>
+                    <dt>조회</dt>
+                    <dd>{{free_board.b_hit}}</dd>
+                </dl>
+                <dl>
+                    <dt>추천수</dt>
+                    <dd id="recommendation_count">{{ free_board.b_recommend }}</dd>
+                </dl>
+            </div>
+
+            <div class="cont" style="white-space: pre-wrap;">{{free_board.b_content}}</div>
+            <div class="recommendation_button">
+                <form action="{% url 'community:detail' free_board.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="custombutton">추천</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div style="" class="answer_wrap">
+        {{ answers_list.count }}개의 답변이 있습니다
+        {% for ans in answers_list %}
+        <div class="comment">
+            {% if ans.author == request.user %}
+            <button class="custombutton delete" data-uri="{% url 'community:comment_delete' ans.id %}">삭제</button>
+            <button class="custombutton update delete" data-uri="{% url 'community:comment_update' ans.id %}">수정</button>
+            {% endif %}
+            <p>작성자: {{ ans.author }}</p>
+            <p>{{ ans.content }}</p>
+        </div>
+
+
+        {% endfor %}
+    </div>
+
+    {% if user.is_authenticated %}
+    <section style="padding-top: 20px;margin-top:20px;">
+        <h2>댓글 등록</h2>
+
+        <form class="comment-form" action="{% url 'community:comment_create' free_board.id %}" method="post">
+            {% csrf_token %}
+            <textarea name="content" rows="10" required></textarea>
+            <button type="submit" class="custom-button">저장</button>
+        </form>
+    </section>
+    {% else %}
+    <h2>로그인시 댓글 이용 가능합니다.</h2>
+    {% endif %}
+    {% if free_board.user == request.user %}
+    <div class="bt_wrap">
+        <a href="{% url 'community:free' %}" class="on">목록</a>
+        <a href="{% url 'community:update' free_board.id %}">수정</a>
+        <a href="{% url 'community:delete' free_board.id  %}" class="board_delete"
+           data-uri="{% url 'community:delete' free_board.id %}">삭제</a>
+    </div>
+    {% else %}
+    <div class="bt_wrap">
+        <a href="{% url 'community:free' %}" class="on">목록</a>
+    </div>
+    {% endif %}
+</div>
+
+{% include 'poll/footer.html' %}
+<script>
+      $(document).ready(function(){
+            $('.delete').click(function(e){  //삭제 버튼을 클릭하면
+                e.preventDefault();  // 기본 동작인 링크 이동을 중지합니다.
+                if(confirm('정말 수정 및 삭제하시겠습니까?')){
+                    location.href=$(this).data('uri'); //현재 대상 객체의 주소를 이동
+                }
+            });
+        });
+</script>
+
+</body>
+
+</html>

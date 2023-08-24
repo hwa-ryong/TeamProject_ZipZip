@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+    .question-form {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+    }
+
+    #question-form-section {
+        margin-bottom: 20px;
+    }
+
+    .question-form-title {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    textarea {
+        width: 100%;
+        height: 150px;
+        padding: 5px;
+        border: 1px solid #ccc;
+    }
+
+   .submit-button {
+        background-color: #000;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .submit-button:hover {
+        background-color: #333;
+    }
+
+    .alert {
+        background-color: #f44336;
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+{% include 'poll/sidebar.html' %}
+{% include 'poll/header.html' %}
+<div class="question-form">
+
+    <section id="question-form-section">
+        <h1 class="question-form-title">답글 수정</h1>
+        <form action="" method="post" class="question-form">
+            {% csrf_token %}
+            <!-- 오류 메시지 -->
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <strong>{{ field.label }}</strong>
+                            {{ field.errors }}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <!-- 오류 메시지 -->
+
+            <div class="form-group">
+                <label for="content">내용</label>
+                <textarea id="content" name="content" required>{{ form.content.value|default_if_none:'' }}</textarea>
+            </div>
+            <button type="submit" class="submit-button">저장</button>
+        </form>
+    </section>
+</div>
+{% include 'poll/footer.html' %}
+</body>
+</html>
+

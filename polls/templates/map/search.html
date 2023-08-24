@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        .map_real_estate {
+            height: 100%;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .myloc_btn_Img {
+            width: 50px;
+            height: 35px;
+            background: url({% static 'images/map/myloc.png' %}) no-repeat;
+            background-size: contain;
+        }
+
+        .myloc_btn_Img > a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .map_real_estate_btn {
+            width: 25%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 49;
+        }
+
+        .map_real_estate_btn > .map_address {
+            width: 80%;
+            height: 23px;
+            padding-top: 1%;
+        }
+
+        .map_real_estate_btn > .map_address_search {
+            padding: 5px 10px;
+            background-color: rgb(0, 65, 66);
+            color: white;
+        }
+
+        .map_real_estate_detail {
+            width: 23.5%;
+            height: 80%;
+            background-color: rgba(255, 255, 255, 0.9);
+            position: absolute;
+            top: 50px;
+            z-index: 150;
+        }
+
+        .map_real_estate_detail > .map_grouping {
+            height: 24px;
+            margin-top: 10px;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            text-align: center;
+            line-height: 26px;
+        }
+
+        .map_real_estate_detail > .map_grouping > label {
+            height: 100%;
+            border-radius: 5px;
+            flex: 1;
+            cursor: pointer;
+            margin: 0 2px;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .map_real_estate_detail > .map_grouping > label:first-of-type {
+            background-color: rgb(248, 182, 43);
+        }
+
+        .map_real_estate_detail > .map_grouping > label:nth-of-type(2) {
+            background-color: rgb(78, 70, 154);
+        }
+
+        .map_real_estate_detail > .map_grouping > label:nth-of-type(3) {
+            background-color: rgb(214, 0, 80);
+        }
+
+        .map_real_estate_detail > .map_grouping > label:last-of-type {
+            background-color: rgb(0, 153, 68);
+        }
+
+        .map_real_estate_detail > .map_grouping > label > input {
+            display: none;
+            margin: 0;
+        }
+
+        .map_real_estate_detail > .map_search_view {
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .map_real_estate_detail > .map_search_view > h3 {
+            padding-left: 20px;
+        }
+
+        .map_real_estate_detail > .map_search_view > ul {
+            list-style: none;
+            font-size: 1.2rem;
+            width: 80%;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .map_real_estate_detail > .map_search_view > ul > li {
+            border-bottom: 1px solid #ccc;
+            margin: 10px auto;
+        }
+
+        @media screen and (max-width: 1224px) {
+            .map_real_estate {
+                width: 95%;
+                margin: 0 auto;
+            }
+
+            .map_real_estate_btn {
+                width: 40%;
+            }
+
+            .map_real_estate_detail {
+                width: 40%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .map_real_estate {
+                width: 90%;
+                margin: 30px auto 0 auto;
+            }
+
+            .map_real_estate_btn {
+                width: 100%;
+                top: -30px;
+                margin: 0 5px;
+            }
+
+            .map_real_estate_detail {
+                width: 100%;
+                top: auto;
+                bottom: 0;
+                height: 15vh;
+            }
+
+            .map_real_estate_detail > .map_grouping {
+                font-size: 0.8rem;
+            }
+
+            .map_real_estate_detail > .map_search_view > ul {
+                font-size: 0.8rem;
+                display: none;
+            }
+
+            .smart_phone_map {
+                width: 50px;
+                height: 10px;
+                margin: 0 auto;
+                background: url(../../static/images/menubar/가로바.png) no-repeat center;
+                background-size: contain;
+                cursor: pointer;
+            }
+        }
+
+    </style>
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-3.7.0.js"
+            integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript"
+        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=oq5hyhgd7v&submodules=geocoder"></script>
+    <script type="text/javascript" src="{% static 'js/MarkerClustering.js' %}"></script>
+    <script async src="{% static 'js/search_map.js' %}"></script>
+</head>
+<body>
+    {% include 'poll/header_map.html' %}
+    <section class="map_real_estate">
+        <div id="map"></div>
+        <form action="{% url 'map:map_search' %}" method="get">
+            {% csrf_token %}
+            <div id="map_real_estate_btn" class="map_real_estate_btn">
+                <input type="text" id="map_address" class="map_address" list="map_search_list">
+                <datalist id="map_search_list"></datalist>
+                <input type="submit" class="map_address_search" value="찾기">
+            </div>
+        </form>
+        <aside class="map_real_estate_detail">
+            <div id="smart_phone_map" class="smart_phone_map"></div>
+            <div class="map_grouping">
+                <label for="map_group1"><input type="radio" id="map_group1" class="map_group" value="group1">연립다세대</label>
+                <label for="map_group4"><input type="radio" id="map_group4" class="map_group" value="group2">아파트</label>
+                <label for="map_group2"><input type="radio" id="map_group2" class="map_group" value="group3">오피스텔</label>
+                <label for="map_group3"><input type="radio" id="map_group3" class="map_group" value="group4">단독다가구</label>
+            </div>
+            <div class="map_search_view">
+                <h3>상세 정보</h3>
+                <ul id="map_search_print"></ul>
+            </div>
+        </aside>
+    </section>
+    <script type="text/javascript">
+        // 지도 객체
+        var map = new naver.maps.Map('map', {
+            center: new naver.maps.LatLng(37.5666805, 126.9784147),
+            zoom: 17,
+            mapTypeControl: true,
+            mapTypeId: naver.maps.MapTypeId.NORMAL,
+            enableHighAccuracy: true,
+        });
+
+        // 지도 현재 위치 찾기 버튼
+        var locationBtnHtml = '<div class="myloc_btn_Img"><a href="#"></a></div>';
+
+        // 지도 마우스 커서 포인트
+        map.setCursor('pointer');
+
+        $('#smart_phone_map').on('click', function () {
+            if ($('.map_real_estate_detail').css('height') < '200px') {
+                $('.map_real_estate_detail').css('height', '70vh');
+                $('.map_real_estate_detail > .map_search_view > ul').css('display', 'block');
+            } else {
+                $('.map_real_estate_detail').css('height', '15vh');
+                $('.map_real_estate_detail > .map_search_view > ul').css('display', 'none');
+            }
+        });
+    </script>
+{% include 'poll/footer.html' %}
+</body>
+</html>

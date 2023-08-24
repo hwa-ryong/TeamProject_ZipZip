@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+    <link rel="stylesheet" href="{% static 'css/notice/css.css' %}">
+</head>
+
+<body>
+{% include 'poll/sidebar.html' %}
+{% include 'poll/header.html' %}
+
+<div class="board_wrap">
+    <div class="board_title">
+        <strong>공지사항 보기</strong>
+    </div>
+        <div class="board_view_wrap">
+            <div class="board_view">
+                <div class="title">
+                    집집 부동산 사칭 전화 주의안내
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>번호</dt>
+                        <dd>1</dd>
+                    </dl>
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd>집집매니저</dd>
+                    </dl>
+                    <dl>
+                        <dt>작성일</dt>
+                        <dd>2023.6.12</dd>
+                    </dl>
+                    <dl>
+                        <dt>조회</dt>
+                        <dd>1873</dd>
+                    </dl>
+                </div>
+                <div class="cont">
+                    안녕하세요<br>
+                    집집 부동산입니다.<br><br>
+
+                    최근 집집 부동산을 사칭하며 중개업소 매물관리센터 계정 정보나 광고비를 요구하는 사례가 발생하고 있습니다.<br>
+                    집집 부동산은 콜센터 02-2182-9800, 혹은 대행사 외의 전화로 고객님께 접촉을 하지 않으며,<br>
+                    유선상으로 고객님의 계정 비밀번호를 요청하지 않습니다.<br><br>
+
+                    또한 고객의 요청없이 먼저 전화를 걸어 고객 계정 접속을 유도하지 않으므로, <br>
+                    계정 접속이나 정보를 요구하는 수상한 전화에 각별히 주의하시도록 당부드립니다. <br><br>
+
+                    만약 이러한 연락을 받으시는 경우, 집집 부동산 고객센터(1588-0332)로 즉각 신고하여 주시기 바랍니다.<br>
+                    감사합니다.
+                </div>
+            </div>
+            <div class="bt_wrap">
+                <a href="{% url 'notice:notice' %}" class="on">목록</a>
+            </div>
+        </div>
+    </div>
+{% include 'poll/footer.html' %}
+</body>
+
+</html>

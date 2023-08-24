@@ -1,0 +1,18 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/footer/footer.css' %}">
+
+<footer>
+    <ul id="bottomMenu">
+        <li><a href="{% url 'introduction:introduction' %}">회사 소개</a></li>
+        <li><a href="{% url 'poll:footer_clause' %}">이용 약관</a></li>
+        <li><a href="{% url 'poll:footer_personal' %}">개인정보 처리방침</a></li>
+        <li><a href="{% url 'poll:footer_location' %}">위치 기반 서비스</a></li>
+        <li><a href="{% url 'poll:footer_source' %}">출처</a></li>
+    </ul>
+    <ul id="bottomSub">
+        <li>상호 : 집집</li>
+        <li>팀 : 3조</li>
+        <li>주소 : 서울특별시 강남구 그린컴퓨터아카데미 (우:11111)</li>
+    </ul>
+</footer>

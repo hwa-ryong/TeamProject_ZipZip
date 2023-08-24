@@ -1,0 +1,59 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/poll/style.css' %}">
+
+<aside class="side-bar">
+    <section class="side-bar-icon-box">
+        <section class="side-bar-icon1">
+            <div></div>
+            <div></div>
+            <div></div>
+        </section>
+    </section>
+    <ul>
+        <li>
+            <a href="{% url 'map:search' %}">
+                <i class="side-icon2"></i>
+                <span>집찾기</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="side-icon3"></i>
+                <span>청약</span>
+            </a>
+            <ul>
+                <li><a href="{% url 'koreaCalendar:subCalendar' %}">청약 일정</a></li>
+                <li><a href="{% url 'calculate:calculate' %}">청약점수 조회</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="{% url 'information:information' %}">
+                <i class="side-icon4"></i>
+                <span>알려드려요</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="side-icon5"></i>
+                <span>커뮤니티</span>
+            </a>
+            <ul>
+                <li><a href="{% url 'community:free' %}">자유게시판</a></li>
+                <li><a href="{% url 'review:review_main' %}">거래후기 게시판</a></li>
+                <li><a href="{% url 'interior:interior' %}">인테리어 게시판</a></li>
+                <li><a href="{% url 'news:news' %}">뉴스</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">
+                <i class="side-icon6"></i>
+                <span>고객서비스</span>
+            </a>
+            <ul>
+                <li><a href="{% url 'notice:notice' %}">공지사항</a></li>
+                <li><a href="{% url 'introduction:introduction' %}">소개</a></li>
+            </ul>
+        </li>
+    </ul>
+</aside>

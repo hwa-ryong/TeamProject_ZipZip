@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 작성</title>
+    <link rel="stylesheet" href="{% static 'css/board/css.css' %}">
+
+</head>
+
+<body>
+{% include 'poll/sidebar.html' %}
+{% include 'poll/header.html' %}
+<form method="post">
+    {% csrf_token %}
+
+    {% if form.errors %}
+
+    {% for field in form %}
+    {% if field.errors %}
+    {{ field.label }}
+    {{ field.errors }}
+    {% endif %}
+    {% endfor %}
+
+    {% endif %}
+    <div class="board_wrap">
+        <div class="board_title">
+            <h1>질문 등록</h1>
+
+        </div>
+        <div class="board_write_wrap">
+            <div class="board_write">
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <input type="text" name="b_title" id="b_title"
+                               value="{{ form.b_title.value|default_if_none:'' }}" placeholder="제목 입력" required>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd>{{free_board.user}}</dd>
+                    </dl>
+
+                    <dl>
+                        <dt>작성일</dt>
+                        <dd>{{ free_board.b_regdate|date:"y-m-d"}}</dd>
+                    </dl>
+
+                </div>
+                <div class="cont">
+                    <label for="b_content"></label>
+                        <textarea name="b_content" id="b_content" rows="10" placeholder="내용입력" required>{{form.b_content.value|default_if_none:''}}</textarea>
+                </div>
+            </div>
+            <div class="bt_wrap">
+
+                <button type="submit" class="custom-submit-button">등록</button>
+                <a href="{% url 'community:free' %}">취소</a>
+            </div>
+        </div>
+    </div>
+
+</form>
+{% include 'poll/footer.html' %}
+</body>
+
+</html>

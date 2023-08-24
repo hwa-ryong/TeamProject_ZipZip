@@ -1,0 +1,261 @@
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{margin: 0; padding: 0;}
+body{font-family: 'GangwonEdu_OTFBoldA';}
+ol, ul, li{list-style: none;}
+a{text-decoration: none; color: black;}
+
+.information_box{
+    overflow: hidden;
+  }
+/* #content{width: 1000px; margin: 30px auto;}
+#content h3{padding: 20px;} */
+
+#content { max-width: 1000px; margin: 20px auto; margin-bottom: 100px; padding: 50px 50px 0 50px; background: white;}
+#content h3 { padding: 20px; }
+.information_box { width: 100%; }
+.information_box iframe { width: 100%; height: 1000px; }
+
+.information_box ol li{width: 100%; height: 100px; border-top: 4px solid #000;/*margin-top:5px;*/}
+.information_box ol li.on{width: 100%; height: 100%; border-top: 4px solid #000;}
+
+.information_box .money{width: 100%;}
+.information_box .money2{width: 100%;}
+
+
+.information_box ol li h4{
+    padding: 0 20px 20px 0;
+    margin: 20px 20px 0 30px;
+    cursor: pointer;
+    background: url(./images/bullet_down.png) no-repeat right center;
+    font-size: 20px;
+
+}
+.information_box ol li.on h4{background: url(./images/bullet_up.png) no-repeat right center;}
+.information_box ol li h4 span{margin-right: 10px;font-weight: 900;}
+.information_box ol li p{visibility: hidden; line-height: 2;}
+.information_box ol li.on p{padding: 30px 100px; background: #eee; visibility: visible;transition: 0.3s; font-size: 18px;}
+
+/* 따라다니는 애 설정 */
+#smart {
+  width: 260px;
+  bottom: 15px;
+  right: 15px;
+  position: fixed;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 99;
+}
+
+.smart_j{
+  text-align: center;
+}
+
+.smart_toggle {
+  display: inline-block;
+  margin-left: 92px;
+}
+
+#smart h4 {
+  font-size: 18px;
+  display: inline;
+}
+
+.smart_top_a a {
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.smart_top_a a:hover {
+  color: #ff7f50;
+}
+
+.smart_section {
+  margin-top: 20px;
+}
+
+.smart_section iframe {
+  width: 100%;
+  height: 250px;
+  border: none;
+}
+
+/* smart_ifram 안에 영역  */
+.smart_ifram_test li a{
+  display: block;
+  padding: 10px;
+  background-color: #fff;
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+
+.smart_section a:hover {
+  background-color: #ff7f50;
+  color: #fff;
+}
+/* 따라다니는 애 끝 */
+
+
+/* 매매계약 이미지 출력 시작 */
+.on_show_img2-1,
+.on_show_img2-2,
+.on_show_img2-3 {
+  padding-left: 30px;
+}
+
+.on_show_img3-1,
+.on_show_img3-2,
+.on_show_img3-3,
+.on_show_img3-4 {
+  padding-left: 30px;
+}
+
+.contract1,
+.contract2_1,
+.contract2_2,
+.contract2_3,
+.contract3_1,
+.contract3_2,
+.contract3_3,
+.contract3_4 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.contract1 {
+  background: url(./images/contract1_수정.png) no-repeat center;
+  background-size: contain;
+}
+
+.contract2_1 {
+  background: url(./images/3-2/2-1.png) no-repeat center;
+  background-size: contain;
+}
+
+.contract2_2 {
+  background: url(./images/3-2/2-2.png) no-repeat center;
+  background-size: contain;
+}
+
+.contract2_3 {
+  background: url(./images/3-2/2-3.png) no-repeat center;
+  background-size: contain;
+}
+
+.contract3_1 {
+  background: url(./images/3-3/3-1.png) no-repeat center;
+  background-size: contain;
+}
+
+.contract3_2 {
+  background: url(./images/3-3/3-2.png) no-repeat center;
+  background-size: contain;
+}
+
+.contract3_3 {
+  background: url(./images/3-3/3-3.png) no-repeat center;
+  background-size: contain;
+}
+
+.contract3_4 {
+  background: url(./images/3-3/3-4.png) no-repeat center;
+  background-size: contain;
+}
+/* 매매계약 이미지 출력 끝 */
+
+/* 탭 설정 */
+.tab-content {
+  display: block;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.tab-content.active {
+  display: block;
+  height: 100%;
+}
+
+.tab-links {
+  list-style: none;
+  padding: 0;
+
+  display: flex;
+
+
+}
+
+.tab-links li {
+  display: flex; /* 수정 */
+  width: 100%;
+}
+
+.tab-links li a {
+  flex: 1; /* 추가 */
+  padding: 15px 20px;
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #000;
+  border-right: none;
+  border-radius: 4px 4px 0 0;
+  text-align: center; /* 추가 */
+  font-size: 18px;
+}
+
+.tab-links li a:last-child{
+    border-right:1px solid #000;
+}
+
+.tab-links a:hover {
+  background-color: #ddd;
+  transition: 0.3s;
+  text-decoration:underline;
+}
+/* 탭 설정 끝 */
+
+/* 반응형 시작 */
+@media screen and (max-width: 1200px) {
+    #smart {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+    }
+
+    #smart h4 {
+        font-size: 16px;
+    }
+
+    #content {
+        padding: 5px;
+    }
+
+    .tab-links li a {
+        font-size: 14px;
+        padding: 15px 12px;
+    }
+
+    .information_box ol li.on p {
+        font-size: 15px;
+        padding: 15px 50px;
+    }
+}

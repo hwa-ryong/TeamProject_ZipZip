@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소개</title>
+    <style>
+        *{ margin: 0; padding: 0; }
+        
+        /* 전체 스타일(기준) */
+        #customer {font-size: 12px; background: white; width: 80%; margin: 20px 200px 50px 200px;}
+
+        /* 컴퓨터 모니터 기준 */
+        /* 홈페이지 소개 - 이름 */
+        #customer .home_introduction h2 {text-align: center; background-color: rgb(29, 79, 80); padding: 3%; color: white; font-size: 2em;}
+        #customer .home_introduction .introduction {text-align: center; margin: 5% 0 8% 150px;}
+        #customer .home_introduction .introduction p {font-size: 20px; }
+        #customer .home_introduction .introduction p span {font-family: '박용준 투사회보'; font-size: 50px; font-weight: 500; color: rgb(0, 0, 0);padding-bottom: 30px}
+
+        /* 홈페이지 소개 - 로고/폰트/색상 */
+        #customer .home_introduction .design {margin-bottom: 7%;}
+        #customer .home_introduction {display: flex; flex-direction:column; margin-left: -150px}
+        #customer .sub_title {font-size: 30px; font-weight: bold; color: rgb(29, 79, 80);
+            box-shadow: inset 0 -15px 0 rgb(82, 136, 136, 0.4); padding-left: 1%; padding-right: 1%;}
+        #customer .home_introduction .design .logo {margin: 0 5% 0 25%; width: 300px; font-size: 1em; float: left; }
+        #customer .home_introduction .design .logo img {width: 300px;}
+        #customer .home_introduction .design .logo p {line-height: 30px; margin-top: 20px; font-size: 18px;}
+        #customer .home_introduction .design .logo p span {font-size: 18px; color: rgb(247, 181, 44); font-weight: 700; }
+        #customer .home_introduction .design .font {font-size: 1em;}
+        #customer .home_introduction .design .font .font_view {font-family: '박용준 투사회보'; font-size: 1.5rem; padding: 10px;}
+        #customer .home_introduction .design .font .font_text {height: 185px; padding-top: 30px;}
+        #customer .home_introduction .design .font .font_text p {font-size: 17px;}
+        #customer .home_introduction .design .font .font_text p span {font-weight: 700; font-size: 24px; color: rgb(247, 181, 44);}
+        #customer .home_introduction .design .font img {width: 200px; float: left;}
+        #customer .home_introduction .design .color img {width: 35%; float: left;}
+
+
+         /* 개발자 소개 스타일 */
+        #customer .people_introduction {margin: 0 15%}
+        #customer .people_introduction table {padding-bottom: 100px}
+        #customer .people_introduction table td{width: 25%}
+        #customer .people_introduction table thead img {width: 80%; display: block; margin: 0 auto;}
+        #customer .people_introduction table tbody td {padding: 5px;}
+        #customer .people_introduction table tbody .common {text-align: center; background-color: rgb(248, 182, 44, 0.4);
+            border-radius: 7px; border-style: solid; border-color: rgb(248, 182, 44, 0.4); border-width: 1px; 
+            color: rgb(71, 46, 0); font-weight: 700; letter-spacing: 3px; font-size: 16px;}
+        #customer .people_introduction table tbody .individual {text-align: center; background-color: rgb(249, 248, 204, 0.4);
+            border-radius: 7px; border-style: solid; border-color: rgb(248, 182, 44, 0.6); border-width: 1px;
+            color: rgb(71, 46, 0); font-weight: 500; letter-spacing: 3px; font-size: 16px;}
+
+        @media screen and (max-width: 1200px) {
+            #customer {
+                width: 95%;
+                margin: 0 auto;
+            }
+
+            #customer .home_introduction .design .font .font_text p {
+                font-size: 14px;
+                text-align: center;
+            }
+
+            #customer .home_introduction .design .font .font_text p span {
+                font-size: 20px;
+                display: inline-block;
+            }
+
+            .color {
+                margin-top: 60px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            #customer {
+                width: 95%;
+                margin: 0 auto;
+            }
+
+            #customer .home_introduction {
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            #customer .home_introduction .introduction p {
+                font-size: 15px;
+            }
+
+            #customer .home_introduction .introduction p span {
+                font-size: 30px;
+            }
+
+            #customer .home_introduction .design .logo {
+                width: 100%;
+                margin: 0;
+            }
+
+            #customer .home_introduction .design .font .font_text p {
+                font-size: 14px;
+                text-align: center;
+            }
+
+            #customer .home_introduction .design .font .font_text p span {
+                font-size: 20px;
+                display: inline-block;
+            }
+
+            #customer .people_introduction table tbody .common {
+                font-size: 13px;
+            }
+
+            #customer .people_introduction table tbody .individual {
+                font-size: 11px;
+            }
+
+            .color {
+                margin-top: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+{% include 'poll/sidebar.html' %}
+{% include 'poll/header.html' %}
+
+    <div id="customer">
+        <div class="home_introduction">
+            <div class="introduction">
+                <p>
+                    <span>"집집"</span><br>
+                    각 집. 또는 모든 집."을 뜻하는 순 우리말로 제작하였습니다.
+                </p>
+            </div>
+            
+            <div class="design">
+                <div class="logo">
+                    <span class="sub_title">로고</span><br>
+                    <div>
+                        <img src="{% static 'images/introduction/img/logo_중간.png' %}" alt="로고">
+                    </div>
+                    <p>
+                        <span>[ " ㅅ " + " H " + " H " ]</span><br>
+                        - 형태 : ㅅ (지붕) + H (건축구조물 H빔)<br>
+                        - 전체적으로 보았을때 집 모양 연상
+                        
+                        
+                    </p>                    
+                </div>
+                <div class="font">
+                    <span class="sub_title">폰트</span><br>
+                    <img src="{% static 'images/introduction/img/font.jpg' %}" alt="font">
+                    <div class="font_text">
+                        <p>
+                            <span>[ 박용준투사회보체 ]</span> 진실을 담는 글씨
+                        </p> 
+                        <p class="font_view">
+                            ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                            abcdefghijklmnopqrstuvwxyz<br>
+                            0123456789
+                        </p>
+                    </div>
+                </div>
+                <div class="color">
+                    <span class="sub_title">색상</span><br>
+                    <img src="{% static 'images/introduction/img/color.jpg' %}" alt="color_1">
+                </div>
+            </div>
+        </div>
+
+            
+        <div class="people_introduction">
+            <span class="sub_title">개발자 소개</span>
+            <table>
+                <thead>
+                    <td><img src="{% static 'images/introduction/img/people1.png' %}" alt="사람1"></td>
+                    <td><img src="{% static 'images/introduction/img/people2.png' %}" alt="사람2"></td>
+                    <td><img src="{% static 'images/introduction/img/people4.png' %}" alt="사람4"></td>
+                    <td><img src="{% static 'images/introduction/img/people3.png' %}" alt="사람3"></td>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="common">프로젝트 기획</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="common">게시판</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="common">데이터 관리(데이터베이스 사용)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="individual">API(지도 구현)</td>
+                        <td colspan="2" class="individual">메인 UI 디자인</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="individual">API(청약 정보 구현)</td>
+                        <td colspan="2" class="individual">로그인 (개인/사업자)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="individual">검색 기능 구현</td>
+                        <td colspan="2" class="individual">회원가입 (개인/사업자)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>      
+    </div>
+{% include 'poll/footer.html' %}
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+    <link rel="stylesheet" href="{% static 'css/notice/css.css' %}">
+</head>
+
+<body>
+{% include 'poll/sidebar.html' %}
+{% include 'poll/header.html' %}
+
+<div class="board_wrap">
+    <div class="board_title">
+        <strong>공지사항 보기</strong>
+    </div>
+
+    <div class="board_view_wrap">
+        <div class="board_view">
+            <div class="title">
+                현장확인매물 부산지역 서비스 확대
+            </div>
+            <div class="info">
+                <dl>
+                    <dt>번호</dt>
+                    <dd>3</dd>
+                </dl>
+                <dl>
+                    <dt>글쓴이</dt>
+                    <dd>집집매니저</dd>
+                </dl>
+                <dl>
+                    <dt>작성일</dt>
+                    <dd>2023.6.15</dd>
+                </dl>
+                <dl>
+                    <dt>조회</dt>
+                    <dd>4885</dd>
+                </dl>
+            </div>
+            <div class="cont">
+                안녕하세요. 집집 부동산입니다. <br><br>
+
+                ‘현장확인매물 서비스‘가 서울, 경기 지역에 이어 부산 지역으로 확대되었습니다. <br>
+                매물등록시 참고 부탁드립니다. <br><br>
+
+                * 서비스 지역 및 적용일 <br>
+                - 기존 지역 : 서울시, 경기 일부 지역(성남,부천,광명,고양,남양주,인천,수원,용인,안양,안산,과천,구리,군포,김포,의정부,시흥,의왕,하남) <br>
+                - 확대 지역 : 부산광역시(단, 기장군과 강서구 제외) <br>
+                - 적용일 : 9월 1일<br><br>
+
+                서비스 변경 사항에 대한 문의 사항은 부동산 콜센터 및 현장확인매물 <br>
+                콜센터, 각 부동산정보업체로 연락주시면 친절히 안내드리도록 하겠습니다. <br> <br>
+
+                * 네이버 부동산 콜센터 : 1588-0332 <br>
+                * 현장확인매물 콜센터(컨펌스) : 1600-5749 <br><br>
+
+                * 부동산 정보업체(업체명 가나다순) <br>
+                - 닥터아파트(www.drapt.com), 대표전화: 02-553-5532 <br>
+                - 매경부동산(http://estate.mk.co.kr/) 대표전화: 1800-6950 <br>
+                - 부동산뱅크(www.neonet.co.kr) 대표전화: 02-2185-7300 <br>
+                - 부동산114(www.r114.com) 대표전화: 070-7011-0075 <br>
+                - 부동산써브(www.serve.co.kr) 대표전화: 02-747-9945 <br>
+                - 조인스랜드(www.joinsland.com) 대표전화: 02-2031-1482 <br>
+                - 텐컴즈 (http://www.tencom.co.kr) 대표전화 : 070-7168-1010 <br>
+                - 한경닷컴 (http://land.hankyung.com) 대표전화 : 1544-2781<br><br>
+
+                항상 노력하는 집집 부동산이 되겠습니다. <br>
+                감사합니다
+            </div>
+        </div>
+        <div class="bt_wrap">
+            <a href="{% url 'notice:notice' %}" class="on">목록</a>
+        </div>
+    </div>
+</div>
+{% include 'poll/footer.html' %}
+</body>
+
+</html>

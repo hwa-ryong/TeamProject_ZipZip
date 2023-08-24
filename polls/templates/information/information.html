@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>알려드려요</title>
+    <link rel="stylesheet" href="{% static 'css/information/style.css' %}">
+    <!-- CDN 방식 CDN이 뭐나면.. 안알랴줌 -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+{% include 'poll/sidebar.html' %}
+{% include 'poll/header.html' %}
+    <section id="content">
+        <h3>집집의 알려드려요!</h3>
+         <ul class="tab-links">
+            <li>
+                <a href="{% url 'information:info_budong' %}" target="test" class="active">부동산매매</a>
+            </li>
+            <li>
+                <a href="{% url 'information:info_jutak' %}" target="test">주택</a>
+            </li>
+            <li>
+                <a href="{% url 'information:info_trouble' %}" target="test">주택임대차분쟁</a>
+            </li>
+            <li>
+                <a href="{% url 'information:info_gondong_trouble' %}" target="test">공동주택관리분쟁</a>
+            </li>
+        </ul>
+        <div class="information_box">
+            <iframe src="{% url 'information:info_budong' %}" frameborder="0" width="100%" height="100%" name="test"></iframe>
+        </div>
+    </section>
+
+    <div id="smart">
+        <div id="smart_j">
+            <h4>똑똑하게 집 구하기</h4>
+            <h4 class="smart_toggle" style="cursor: pointer;">닫기</h4>
+            <div class="smart_top_a">
+                <a href="{% url 'information:info_smart_mama' %}" target="smart">매매</a>|
+                <a href="{% url 'information:info_smart_jansa' %}" target="smart">전월세</a>|
+                <a href="{% url 'information:info_smart_blue' %}" target="smart">청약</a>
+            </div>
+        </div>
+        <div class="smart_section">
+            <iframe src="{% url 'information:info_smart_mama' %}" frameborder="0" width="300px" height="300px"
+                name="smart"></iframe>
+        </div>
+    </div>
+{% include 'poll/footer.html' %}
+    <script>
+        // 토글테스트
+        $(function(){
+            // 닫기클릭하면
+            $('.smart_toggle').click(function(){
+                $('.smart_section').toggle().css('transition','0.3s')
+                $('.smart_top_a').toggle()
+                // $(this가 함수 연 주체 지금은 smart_toggle )
+                // 3항 연산자로 제어
+                // smart_toggle 글씨가 열기인가요? -> 닫기
+                // smart_toggle 글씨가 닫기인가요? -> 열기
+                // 이미지로 하는게 나을지도..
+                var text = $(this).text()
+                $(this).text(text === '열기' ? '닫기' : '열기');
+
+            })
+        })
+    </script>
+
+</body>
+
+</html>

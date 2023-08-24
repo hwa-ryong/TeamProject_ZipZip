@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글</title>
+    <link rel="stylesheet" href="{% static 'css/board/css.css' %}">
+</head>
+
+<body>
+{% include 'poll/sidebar.html' %}
+{% include 'poll/header.html' %}
+<!-- write 복사해서 내용만 바꿈 -->
+<div class="board_wrap">
+    <div class="board_title">
+        <strong>게시글 수정</strong>
+        <p>게시글 수정사항이 있으시면 작성해주세요.</p>
+    </div>
+
+    <div class="board_write_wrap">
+        <form action="{% url 'community:update' free_board.id %}" method="post">
+            {% csrf_token %}
+            <div class="board_write">
+
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" name="b_title" value="{{ free_board.b_title }}"></dd>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd>{{ free_board.user }}</dd>
+                    </dl>
+                </div>
+                <div class="cont">
+                    <textarea name="b_content">{{ free_board.b_content }}</textarea>
+                </div>
+            </div>
+
+            <div class="bt_wrap">
+                <button type="submit" class="on">수정</button>
+                <a href="{% url 'community:detail' free_board.id %}">취소</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% include 'poll/footer.html' %}
+</body>
+
+</html>

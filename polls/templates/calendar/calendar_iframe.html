@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        @font-face {
+            font-family: 'GangwonEdu_OTFBoldA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            background: white;
+            font-family: 'GangwonEdu_OTFBoldA';
+        }
+
+        .calendar_detail {
+            position: relative;
+        }
+
+        .calendar_detail > .calendar-sub {
+            position: relative;
+        }
+
+        .calendar_detail > .calendar-sub > p {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 0.9rem;
+        }
+
+        .calendar_detail > p {
+            font-size: 0.9rem;
+            padding: 0 10px;
+        }
+
+        .calendar_detail > .calendar-table > .calendar-table-th1 > tr > td,
+        .calendar_detail > .calendar-table > .calendar-table-th2 > tr,
+        .calendar_detail > .calendar-table > .calendar-table-tb3 > tr > .calendar-table-td2,
+        .calendar_detail > .calendar-table > .calendar-table-th3, .calendar-table-tb4,
+        .calendar_detail > .calendar-table > .calendar-table-th4,
+        .calendar_detail > .calendar-table > .calendar-table-tb5 > tr > td:not(:nth-of-type(2)),
+        .calendar_detail > .calendar-table > .calendar-table-th5, .calendar-table-tb6 {
+            text-align: center;
+        }
+
+        .calendar_detail > .calendar-table > .calendar-table-tb5 > tr > td:nth-of-type(2) {
+            text-align: right;
+        }
+
+        .calendar_detail > .calendar-table > .calendar-table-tb1 > tr > td:first-child {
+            width: 25%;
+        }
+
+        .calendar_detail > .calendar-table > .calendar-table-tb2 > tr > td:first-child {
+            width: 20%;
+        }
+
+        .calendar-close-btn1 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 0 10px;
+            cursor: pointer;
+        }
+
+        .calendar-close-btn-box {
+            width: 20%;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .calendar-close-btn2 {
+            color: aliceblue;
+            padding: 10px 30px;
+            background-color: rgb(74, 73, 73);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .calendar-table > thead > tr > td,
+        .calendar-table > tbody > tr > td{
+            border: 1px solid black;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+        .calendar-table > thead > tr {
+            background-color: #ccc;
+        }
+
+        .calendar-table > tbody > tr > .calendar-table-td {
+            background-color: #ccc;
+        }
+
+        /* 반응형 시작 */
+        @media screen and (max-width: 510px) {
+            .calendar-close-btn2 {
+                padding: 5px 15px;
+            }
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+            integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/calendar_iframe.js' %}"></script>
+</head>
+<body>
+    {% for data in data_list %}
+    <section class="calendar_detail">
+        <div class="calendar-close-btn1" id="calendar-close-btn1">X</div>
+        <h3>입주자모집공고 정보</h3>
+        <hr>
+        <table class="calendar-table">
+            <thead class="calendar-table-th1">
+                <tr>
+                    <td colspan="2">{{ data.HOUSE_NM }}</td>
+                </tr>
+            </thead>
+            <tbody class="calendar-table-tb1">
+                <tr>
+                    <td>공급위치</td>
+                    <td>({{ data.HSSPLY_ZIP }}) {{ data.HSSPLY_ADRES }}{{ data.HSSPLY_HSHLDCO }}</td>
+                </tr>
+                <tr>
+                    <td>공급규모</td>
+                    <td>{{ data.TOT_SUPLY_HSHLDCO }}</td>
+                </tr>
+                <tr>
+                    <td>입주자모집공고 문의</td>
+                    <td>사업주체 또는 분양사무실로 문의</td>
+                </tr>
+                <tr>
+                    <td>문의처</td>
+                    <td id="ph_number">{{ data.MDHS_TELNO }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>청약일정</h4>
+        <hr>
+        <table class="calendar-table">
+            <tbody class="calendar-table-tb2">
+                <tr>
+                    <td class="calendar-table-td">모집공고일</td>
+                    <td colspan="4">{{ data.RCRIT_PBLANC_DE }}</td>
+                </tr>
+                <tr>
+                    <td class="calendar-table-td" rowspan="4">청약접수</td>
+                    <td>구분</td>
+                    <td>해당지역</td>
+                    <td>기타지역</td>
+                    <td>접수장소</td>
+                </tr>
+                {% if data.SPSPLY_RCEPT_BGNDE is not None %}
+                <tr>
+                    <td>특별공급</td>
+                    <td>{{ data.SPSPLY_RCEPT_BGNDE }}</td>
+                    <td>{{ data.SPSPLY_RCEPT_BGNDE }}</td>
+                    <td>인터넷</td>
+                </tr>
+                <tr>
+                    <td>1순위</td>
+                    <td>{{ data.SPSPLY_RCEPT_BGNDE }}</td>
+                    <td>{{ data.SPSPLY_RCEPT_BGNDE }}</td>
+                    <td>인터넷</td>
+                </tr>
+                <tr>
+                    <td>2순위</td>
+                    <td>{{ data.SPSPLY_RCEPT_BGNDE }}</td>
+                    <td>{{ data.SPSPLY_RCEPT_BGNDE }}</td>
+                    <td>인터넷</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td>특별공급</td>
+                    <td></td>
+                    <td></td>
+                    <td>인터넷</td>
+                </tr>
+                <tr>
+                    <td>1순위</td>
+                    <td></td>
+                    <td></td>
+                    <td>인터넷</td>
+                </tr>
+                <tr>
+                    <td>2순위</td>
+                    <td></td>
+                    <td></td>
+                    <td>인터넷</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td class="calendar-table-td">당첨자 발표일</td>
+                    <td colspan="4">{{ data.PRZWNER_PRESNATN_DE }}</td>
+                </tr>
+                <tr>
+                    <td class="calendar-table-td">계약일</td>
+                    <td colspan="4">{{ data.CNTRCT_CNCLS_ENDDE }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>* 특별공급 종류에 따라 접수기간 및 장소가 다를 수 있으니 모집공고를 반드시 확인하시기 바랍니다.</p>
+        <h4>공급대상</h4>
+        <hr>
+        <table class="calendar-table">
+            <thead class="calendar-table-th2">
+                <tr>
+                    <td rowspan="2">주택구분</td>
+                    <td rowspan="2">주택형</td>
+                    <td rowspan="2">주택공급면적<br>(주거전용+주거공용)</td>
+                    <td colspan="2">공급세대수</td>
+                    <td rowspan="2">주택관리번호(모델번호)</td>
+                </tr>
+                <tr>
+                    <td>일반</td>
+                    <td>특별</td>
+                </tr>
+            </thead>
+            <tbody class="calendar-table-tb3">
+                <tr>
+                    <td class="calendar-table-td2" rowspan="{{ rowspan }}"
+                    >{{ data.HOUSE_DTL_SECD_NM }}{{ data.HOUSE_SECD_NM }}</td>
+                </tr>
+                {% for data1 in data_list2 %}
+                <tr>
+                    <td class="calendar-table-td2">{{ data1.HOUSE_TY }}</td>
+                    {% if data1.SUPLY_AR is not None %}
+                    <td class="calendar-table-td2">{{ data1.SUPLY_AR }}</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    <td class="calendar-table-td2">{{ data1.SUPLY_HSHLDCO }}</td>
+                    {% if data1.SPSPLY_HSHLDCO is not None %}
+                    <td class="calendar-table-td2">{{ data1.SPSPLY_HSHLDCO }}</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    <td class="calendar-table-td2">{{ data.HOUSE_MANAGE_NO }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="calendar-sub">
+            <h4>특별공급 공급대상</h4>
+            <p>단위(세대)</p>
+        </div>
+        <hr>
+        <table class="calendar-table">
+            <thead class="calendar-table-th3">
+                <tr>
+                    <td rowspan="2">주택형</td>
+                    <td colspan="8">공급세대수</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">다자녀가구</td>
+                    <td>신혼부부</td>
+                    <td>생애최초</td>
+                    <td>노부모 부양</td>
+                    <td>기관추천</td>
+                    <td>이전기관</td>
+                    <td>기타</td>
+                </tr>
+            </thead>
+            <tbody class="calendar-table-tb4">
+                {% for data1 in data_list2 %}
+                <tr>
+                    <td>{{ data1.HOUSE_TY }}</td>
+                    <td>{{ data1.MNYCH_HSHLDCO }}</td>
+                    <td>{{ data1.NWWDS_HSHLDCO }}</td>
+                    <td>{{ data1.LFE_FRST_HSHLDCO }}</td>
+                    <td>{{ data1.OLD_PARNTS_SUPORT_HSHLDCO }}</td>
+                    <td>{{ data1.INSTT_RECOMEND_HSHLDCO }}</td>
+                    <td>{{ data1.TRANSR_INSTT_ENFSN_HSHLDCO }}</td>
+                    <td>{{ data1.ETC_HSHLDCO }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p>
+            * 공급세대수는 사업주체의 최초 입주자모집 공고문 기준입니다. 특별공급 신청 미달 시 잔여물량은 일반공급으로 전환됨에 따라 일반공급 세대 수가
+            변경될 수 있으므로 최종 일반공급 세대수는 일반공급 신청일에 '청약접수 경쟁률'에서 확인 또는 사업주체에 문의하시기 바랍니다.
+        </p>
+        <p>
+            * 주택형=주거전용면적(type이 있는 경우 type포함)
+        </p>
+        <div class="calendar-sub">
+            <h4>공급금액, 2순위 청약금 및 입주예정월</h4>
+            <p>공급금액(단위: 만원)</p>
+        </div>
+        <hr>
+        <table class="calendar-table">
+            <thead class="calendar-table-th4">
+                <tr>
+                    <td>주택형</td>
+                    <td>공급금액(최고가 기준)</td>
+                    <td>2순위 청약금</td>
+                </tr>
+            </thead>
+            <tbody class="calendar-table-tb5">
+                {% for data1 in data_list2 %}
+                    {% if forloop.first %}
+                <tr>
+                    <td>{{ data1.HOUSE_TY }}</td>
+                    <td>{{ data1.LTTOT_TOP_AMOUNT }}</td>
+                    <td rowspan="{{ rowspan }}">청약통장으로 청약(청약금 없음)</td>
+                </tr>
+                    {% else %}
+                <tr>
+                    <td>{{ data1.HOUSE_TY }}</td>
+                    <td>{{ data1.LTTOT_TOP_AMOUNT }}</td>
+                </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <p>* 층별(동호수별) 세부 공급금액은 사업주체의 입주자모집 공고문을 참고하시기 바랍니다.</p>
+        <h4>기타사항</h4>
+        <hr>
+        <table class="calendar-table">
+            <thead class="calendar-table-th5">
+                <tr>
+                    <td>시행사</td>
+                    <td>시공사</td>
+                    <td>사업주체 전화번호</td>
+                </tr>
+            </thead>
+            <tbody class="calendar-table-tb6">
+                <tr>
+                    <td>{{ data.BSNS_MBY_NM }}</td>
+                    <td>{{ data.CNSTRCT_ENTRPS_NM }}</td>
+                    <td id="ph_num">{{ data.MDHS_TELNO }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>* 시행사 및 시공사가 여러 업체인 경우 한 업체만 표시됩니다.</p>
+        <div class="calendar-close-btn-box">
+            <button type="button" class="calendar-close-btn2" id="calendar-close-btn2">닫기</button>
+        </div>
+    </section>
+    {% endfor %}
+</body>
+</html>
